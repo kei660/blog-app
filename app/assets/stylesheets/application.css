@@ -13,3 +13,35 @@
  *= require_tree .
  *= require_self
  */
+
+ a {
+  text-decoration: none; /* 下線を消す */
+}
+
+.btn-primary{
+  display: inline-block;       /* ボタンとして表示 */
+  background-color: #007bff;  /* 背景色（青） */
+  color: white;               /* 文字色（白） */
+  padding: 10px 20px;         /* 内側の余白 */
+  text-decoration: none;      /* 下線を消す */
+  border-radius: 5px;         /* 角を丸くする */
+  font-size: 16px;            /* 文字サイズ */
+  font-weight: bold;          /* 文字を太字にする */
+  border: none;               /* 枠線を消す */
+  cursor: pointer;            /* ホバー時にカーソルを指にする */
+  text-align: center;         /* テキストを中央揃え */
+}
+
+.btn-secondary{
+  display: inline-block;       /* ボタンとして表示 */
+  background-color: #007bff;  /* 背景色（青） */
+  color: white;               /* 文字色（白） */
+  padding: 10px 20px;         /* 内側の余白 */
+  text-decoration: none;      /* 下線を消す */
+  border-radius: 5px;         /* 角を丸くする */
+  font-size: 16px;            /* 文字サイズ */
+  font-weight: bold;          /* 文字を太字にする */
+  border: none;               /* 枠線を消す */
+  cursor: pointer;            /* ホバー時にカーソルを指にする */
+  text-align: center;         /* テキストを中央揃え */
+}
