@@ -18,7 +18,7 @@
   text-decoration: none; /* 下線を消す */
 }
 
-.btn-primary{
+.btn{
   display: inline-block;       /* ボタンとして表示 */
   background-color: #007bff;  /* 背景色（青） */
   color: white;               /* 文字色（白） */
@@ -32,16 +32,80 @@
   text-align: center;         /* テキストを中央揃え */
 }
 
-.btn-secondary{
-  display: inline-block;       /* ボタンとして表示 */
-  background-color: #007bff;  /* 背景色（青） */
-  color: white;               /* 文字色（白） */
-  padding: 10px 20px;         /* 内側の余白 */
-  text-decoration: none;      /* 下線を消す */
-  border-radius: 5px;         /* 角を丸くする */
-  font-size: 16px;            /* 文字サイズ */
-  font-weight: bold;          /* 文字を太字にする */
-  border: none;               /* 枠線を消す */
-  cursor: pointer;            /* ホバー時にカーソルを指にする */
-  text-align: center;         /* テキストを中央揃え */
+/* 投稿フォームのコンテナ */
+.post-form-container {
+  max-width: 600px;
+  margin: 50px auto; /* 中央寄せ */
+  padding: 20px;
+  background-color: #f9f9f9; /* 背景色 */
+  border-radius: 10px; /* 角を丸くする */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 影をつける */
+  font-family: Arial, sans-serif;
 }
+
+/* フォームのタイトル */
+.form-title {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+/* 各フォームグループ */
+.form-group {
+  margin-bottom: 15px;
+}
+
+/* ラベルのデザイン */
+.form-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #555;
+  font-weight: bold;
+}
+
+/* テキスト入力欄 */
+.form-input,
+.form-textarea {
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box; /* 枠線も含めて幅を計算 */
+}
+
+/* テキストエリアのデザイン */
+.form-textarea {
+  height: 150px;
+  resize: vertical; /* 縦方向のみリサイズ可能 */
+}
+
+/* ボタン */
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  border: none;
+}
+
+/* プライマリボタン */
+.button-primary {
+  background-color: #007bff;
+}
+
+.button-primary:hover {
+  background-color: #0056b3;
+}
+
+/* ボタンのアクション */
+.form-actions {
+  text-align: center;
+  margin-top: 20px;
+}
+
