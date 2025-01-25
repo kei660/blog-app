@@ -8,7 +8,6 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
-   root "tops#index"
-
-   resources :posts, only: [:new, :create]
+   root "posts#index" # トップページを投稿一覧に設定
+   resources :posts, only: [:index, :new, :create, :show]
 end

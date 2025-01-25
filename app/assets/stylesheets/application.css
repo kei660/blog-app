@@ -109,3 +109,83 @@
   margin-top: 20px;
 }
 
+/* 投稿一覧ページのスタイル */
+.posts-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.post-card {
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.post-card p {
+  color: #555;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.post-meta {
+  font-size: 12px;
+  color: #999;
+  text-align: right;
+}
+
+.post-detail {
+  max-width: 600px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.post-detail h1 {
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.post-detail p {
+  margin-bottom: 10px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.post-meta {
+  font-size: 14px;
+  color: #999;
+  text-align: right;
+}
+
+.flash {
+  margin: 20px;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 14px;
+  text-align: center;
+}
+
+.flash-notice {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash-alert {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+

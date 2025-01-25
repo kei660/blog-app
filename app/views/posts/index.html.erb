@@ -1,0 +1,15 @@
+<h1>投稿一覧</h1>
+
+<div class="posts-list">
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+      <div class="post-item">
+        <h2><%= post.title %></h2>
+        <p><%= truncate(post.content, length: 100) %></p>
+        <%= link_to '続きを読む', post_path(post), class: 'btn btn-link' %>
+      </div>
+    <% end %>
+  <% else %>
+    <p>まだ投稿がありません。</p>
+  <% end %>
+</div>
