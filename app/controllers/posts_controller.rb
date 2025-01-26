@@ -1,5 +1,7 @@
 class PostsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]  # ログインしていないと新規投稿や作成ができない
+  before_action :authenticate_user!, except: [:index, :show] # ログインしていない場合の制限
+  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :authorize_user!, only: [:edit, :update, :destroy] # 投稿者のみ許可
 
   def index
     @posts = Post.all.order(created_at: :desc)  # 最新の投稿から順番に表示
@@ -23,7 +25,30 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def edit
+    # @postはset_postで取得済み
+  end
+
+  def update
+    if @post.update(post_params)
+      redirect_to @post, notice: '投稿が更新されました。'
+    else
+      render :edit, alert: '投稿の更新に失敗しました。'
+    end
+  end
+
+
   private
+
+  def set_post
+    @post = Post.find(params[:id])
+  end
+
+  def authorize_user!
+    unless @post.user == current_user
+      redirect_to root_path, alert: '編集権限がありません。'
+    end
+  end
 
   def post_params
     params.require(:post).permit(:title, :content)

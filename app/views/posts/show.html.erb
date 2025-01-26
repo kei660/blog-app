@@ -1,6 +1,10 @@
 <div class="post-detail">
   <h1><%= @post.title %></h1>
-  <p><%= @post.content %></p>
-  <p class="post-meta">投稿者: <%= @post.user.email %> | 投稿日: <%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %></p>
-  <%= link_to "戻る", root_path, class: "button" %>
+<p><%= @post.content %></p>
+
+<% if @post.user == current_user %> <!-- 投稿者のみ表示 -->
+  <%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary' %>
+<% end %>
+
+<%= link_to '戻る', posts_path, class: 'btn btn-secondary' %>
 </div>

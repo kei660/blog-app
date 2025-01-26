@@ -1,0 +1,17 @@
+<h1>投稿を編集</h1>
+
+<%= form_with model: @post, local: true do |f| %>
+  <div class="form-group">
+    <%= f.label :title, "タイトル" %>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :content, "内容" %>
+    <%= f.text_area :content, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "更新する", class: "btn btn-primary" %>
+  </div>
+<% end %>
