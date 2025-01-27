@@ -1,0 +1,18 @@
+<h1>投稿一覧</h1>
+
+<div class="posts-list">
+  <% if @posts.any? %>
+    <% @posts.each do |post| %>
+  <div class="post-item">
+    <h2><%= post.title %></h2>
+    <p><%= truncate(post.content, length: 100) %></p>
+    <%= link_to '続きを読む', post_path(post), class: 'btn btn-link' %>
+
+    <% if post.user == current_user %> <!-- 投稿者のみ表示 -->
+      <%= link_to '編集', edit_post_path(post), class: 'btn btn-primary' %>
+    <% end %>
+  </div>
+ <% end %>
+<% end %>
+</div>
+

@@ -11,6 +11,28 @@
   </head>
 
   <body>
+     <header>
+    <nav>
+      <ul>
+        <% if user_signed_in? %>  <!-- ログインしている場合 -->
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+        <% else %>  <!-- ログインしていない場合 -->
+          <li><%= link_to 'サインイン', new_user_session_path %></li>
+          <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+  </header>
+
     <%= yield %>
+    <% if flash[:notice] %>
+  <div class="flash flash-notice">
+    <%= flash[:notice] %>
+  </div>
+<% elsif flash[:alert] %>
+  <div class="flash flash-alert">
+    <%= flash[:alert] %>
+  </div>
+<% end %>
   </body>
 </html>
