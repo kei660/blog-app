@@ -20,4 +20,32 @@ RSpec.describe PostsController, type: :controller do
       expect(assigns(:posts)).to eq([@post3, @post1, @post2])
     end
   end
+
+  describe "GET #new" do
+  context "ログインしていない場合" do
+    it "ログインページにリダイレクトされること" do
+      get :new
+      expect(response).to redirect_to(new_user_session_path)  # ログインページにリダイレクト
+    end
+  end
+
+  context "ログインしている場合" do
+    before do
+      # ログインユーザーを作成してサインイン
+      @user = create(:user)
+      sign_in @user
+    end
+
+    it "正常にレスポンスが返されること" do
+      get :new
+      expect(response).to have_http_status(:ok)  # 200 OK が返されること
+    end
+
+    it "新しいPostオブジェクトがインスタンス変数にセットされていること" do
+      get :new
+      expect(assigns(:post)).to be_a_new(Post)  # @post が新しいPostオブジェクトであること
+    end
+  end
+end
+
 end
