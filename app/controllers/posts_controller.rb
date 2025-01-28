@@ -51,7 +51,7 @@ class PostsController < ApplicationController
   rescue ActiveRecord::RecordNotFound
     redirect_to root_path, alert: '編集権限がありません。'
   end
-  
+
 private
 
   def set_post
