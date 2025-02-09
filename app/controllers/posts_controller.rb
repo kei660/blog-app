@@ -41,13 +41,9 @@ def create
     if @post.update(post_params)
       redirect_to @post, notice: '投稿が更新されました。'
     else
-      render :edit, status: :unprocessable_entity
-       redirect_to root_path, alert: '編集権限がありません。'
+    redirect_to edit_post_path(@post) , alert: '投稿が更新できません。'
     end
   end
-
-  
-  
 
   def destroy
     @post = current_user.posts.find(params[:id])

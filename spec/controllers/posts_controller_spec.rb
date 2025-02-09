@@ -149,4 +149,34 @@ context "存在しない投稿を指定した場合" do
  end
 end
 
+describe"GET #update" do
+let(:user) { create(:user) }  # テスト用ユーザーを作成
+let(:post) { create(:post, user: user) }  # ログインユーザーの投稿
+
+before do
+  sign_in user # ユーザーがサインインしている前提
+end
+
+context"投稿のデータが更新できない"do
+it"更新しようとしている投稿のタイトルが空欄の場合に編集画面にリダイレクトされる" do
+  put :update, params: { id: post.id, post: { title: '', content: '新しい内容' } }
+  expect(response).to redirect_to(edit_post_path(post)) 
+  expect(flash[:alert]).to eq('投稿が更新できません。')
+end
+it"更新しようとしている投稿の内容が空欄の場合に編集画面にリダイレクトされる" do
+  put :update, params: { id: post.id, post: { title: '新しいタイトル', content: '' } }
+  expect(response).to redirect_to(edit_post_path(post)) 
+  expect(flash[:alert]).to eq('投稿が更新できません。')
+end
+end
+
+context"投稿のデータが更新できる" do
+  it"ログインしているユーザー自身の投稿が更新されている" do
+  put :update, params: { id: post.id, post: { title: '新しいタイトル', content: '新しい内容' } }
+
+  expect(response).to redirect_to(post_path(post))  # post_path(post) は show アクションへのリダイレクト  expect(flash[:alert]).to eq('投稿が更新されました。')
+end
+end
+end
+
 end
