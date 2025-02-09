@@ -101,4 +101,18 @@ RSpec.describe PostsController, type: :controller do
     end
   end
 
+  describe "GET #show" do
+  let(:post) { create(:post) }  # FactoryBot でテストデータを作成
+
+  it "正常にレスポンスを返すこと" do
+    get :show, params: { id: post.id }
+    expect(response).to have_http_status(:success)
+  end
+  
+  it "適切な投稿が@postに格納されること" do
+    get :show, params: { id: post.id }
+    expect(assigns(:post)).to eq(post) # @post に正しいデータがセットされるか確認
+  end
+end
+
 end
