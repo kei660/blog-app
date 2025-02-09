@@ -1,4 +1,6 @@
 class PostsController < ApplicationController
+  rescue_from ActiveRecord::RecordNotFound, with: :record_not_found
+
   before_action :authenticate_user!, except: [:index, :show] # ログインしていない場合の制限
   before_action :set_post, except: [:index, :new, :create]
   before_action :authorize_user!, only: [:edit, :update, :destroy] # 投稿者のみ許可
@@ -70,6 +72,10 @@ private
 
   def post_params
     params.require(:post).permit(:title, :content)
+  end
+
+  def record_not_found
+    redirect_to root_path, alert: '編集権限がありません。'
   end
 end
 

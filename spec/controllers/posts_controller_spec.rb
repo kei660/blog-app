@@ -108,11 +108,45 @@ RSpec.describe PostsController, type: :controller do
     get :show, params: { id: post.id }
     expect(response).to have_http_status(:success)
   end
-  
+
   it "適切な投稿が@postに格納されること" do
     get :show, params: { id: post.id }
     expect(assigns(:post)).to eq(post) # @post に正しいデータがセットされるか確認
   end
+end
+
+describe "GET #edit" do
+let(:user) { create(:user) }  # テスト用ユーザーを作成
+let(:other_user) { create(:user) }  # 他のユーザーを作成
+let(:post) { create(:post, user: user) }  # ログインユーザーの投稿
+let(:other_post) { create(:post, user: other_user) }  # 他のユーザーの投稿
+
+before do
+  sign_in user  # Devise の `sign_in` ヘルパーを使用（Devise が必要）
+end
+context "自分の投稿を編集する場合" do
+  it "リクエストが成功し、正しいビューが表示されること" do
+    get :edit, params: { id: post.id }
+    expect(response).to have_http_status(:ok)
+    expect(assigns(:post)).to eq(post)  # @post に正しい投稿が入っていること
+  end
+end
+
+context "他人の投稿を編集しようとした場合" do
+  it "トップページにリダイレクトされること" do
+    get :edit, params: { id: other_post.id }
+    expect(response).to redirect_to(root_path)
+    expect(flash[:alert]).to eq('編集権限がありません。')
+  end
+end
+
+context "存在しない投稿を指定した場合" do
+  it "トップページにリダイレクトされること" do
+    get :edit, params: { id: '' }  # 存在しないID
+    expect(response).to redirect_to(root_path)
+    expect(flash[:alert]).to eq('編集権限がありません。')
+  end
+ end
 end
 
 end
