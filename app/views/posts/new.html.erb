@@ -1,7 +1,18 @@
 <div class="post-form-container">
   <h1 class="form-title">新しい投稿を作成する</h1>
 
- <%= form_with model: @post, local: true do |f| %>
+ <%= form_with(model: @post, local: true) do |f| %>
+  <% if @post.errors.any? %>
+    <div class="error_messages">
+      <h2>投稿の作成に失敗しました:</h2>
+      <ul>
+        <% @post.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <div class="form-group">
     <%= f.label :title, "タイトル" %>
     <%= f.text_field :title, class: "form-control" %>
