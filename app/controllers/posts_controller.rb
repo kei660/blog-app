@@ -46,11 +46,14 @@ def create
   end
 
   def destroy
-    @post = current_user.posts.find(params[:id])
-    @post.destroy
-    redirect_to root_path, notice: '投稿が削除されました。'
-  rescue ActiveRecord::RecordNotFound
-    redirect_to root_path, alert: '編集権限がありません。'
+    @post = current_user.posts.find_by(id: params[:id])
+    
+    if @post 
+      @post.destroy
+      redirect_to root_path, notice: '投稿が削除されました。'
+    else
+      redirect_to root_path, alert: '編集権限がありません。'
+    end
   end
 
 private

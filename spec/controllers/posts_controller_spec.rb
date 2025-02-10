@@ -149,7 +149,7 @@ context "存在しない投稿を指定した場合" do
  end
 end
 
-describe"GET #update" do
+describe"PUT #update" do
 let(:user) { create(:user) }  # テスト用ユーザーを作成
 let(:post) { create(:post, user: user) }  # ログインユーザーの投稿
 
@@ -175,6 +175,46 @@ context"投稿のデータが更新できる" do
   put :update, params: { id: post.id, post: { title: '新しいタイトル', content: '新しい内容' } }
 
   expect(response).to redirect_to(post_path(post))  # post_path(post) は show アクションへのリダイレクト  expect(flash[:alert]).to eq('投稿が更新されました。')
+end
+end
+end
+
+describe"DELETE #destroy" do
+
+let(:user) { create(:user) }           # ユーザーの作成
+let(:other_user) { create(:user) }     # 別のユーザー
+let(:post) { create(:post, user: user) } # ユーザーが作成した投稿
+let(:other_post) { create(:post, user: other_user) }  # 他のユーザーの投稿
+
+context"投稿を削除できない" do
+it"存在しない投稿を削除しようとしたとき" do
+  sign_in user  # ユーザーとしてサインイン
+
+  # 存在しない投稿のIDで削除を試みる
+  expect { delete :destroy, params: { id: 99999 } }.to change(Post, :count).by(0)
+
+  # リダイレクト先とメッセージの確認
+  expect(response).to redirect_to(root_path)
+  expect(flash[:alert]).to eq('編集権限がありません。')
+end
+it"他の人の投稿を削除しようとしたとき" do
+  sign_in user 
+
+  expect { delete :destroy, params: { id: other_post.id } }.to change(Post, :count).by(1)
+  # リダイレクト先とメッセージの確認
+  expect(response).to redirect_to(root_path)
+  expect(flash[:alert]).to eq('編集権限がありません。')
+end
+end
+context"投稿を削除できるとき" do
+it"ログインしているユーザーが自身の投稿を削除するとき" do
+  sign_in user  # ユーザーとしてサインイン
+
+  expect { delete :destroy, params: { id: post.id } }.to change(Post, :count).by(0)
+
+  # リダイレクト先とメッセージの確認
+  expect(response).to redirect_to(root_path)
+  expect(flash[:notice]).to eq('投稿が削除されました。')
 end
 end
 end
