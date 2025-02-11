@@ -4,6 +4,9 @@
 
 <% if @post.user == current_user %> <!-- 投稿者のみ表示 -->
   <%= link_to '編集', edit_post_path(@post), class: 'btn btn-primary' %>
+<%= form_with model: @post, method: :delete do %>
+  <%= submit_tag "削除", data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger" %>
+<% end %>
 <% end %>
 
 <%= link_to '戻る', posts_path, class: 'btn btn-secondary' %>
