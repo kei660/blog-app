@@ -65,11 +65,17 @@ group :test do
    gem 'faker' 
    gem 'rspec-rails', '~> 6.0'
      gem 'rails-controller-testing'
+
+     gem 'capybara'
+     gem 'selenium-webdriver'  # 必須
+     gem 'webdrivers'  # Chrome などのドライバー自動更新用（推奨）
+
 end
 
 
 gem 'devise'
 
 gem 'shoulda-matchers', '~> 5.0'
+
 
 

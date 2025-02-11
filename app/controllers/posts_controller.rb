@@ -4,7 +4,7 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show] # ログインしていない場合の制限
   before_action :set_post, except: [:index, :new, :create]
   before_action :authorize_user!, only: [:edit, :update, :destroy] # 投稿者のみ許可
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update]
 
   def index
     @posts = Post.all.order(created_at: :desc)  # 最新の投稿から順番に表示
