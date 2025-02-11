@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "ユーザー認証", type: :system do
   let!(:user) { create(:user) }
+  let(:post) { create(:post, user: user) }
+
 
   before do
     driven_by(:rack_test) # JavaScriptを使用しないテストドライバ
@@ -52,6 +54,20 @@ RSpec.describe "ユーザー認証", type: :system do
       click_button "Log in"
 
       expect(page).to have_content "Invalid Email or password."
+    end
+
+    context '未ログインの状態で' do
+      it '投稿の作成ページにアクセスするとログインページにリダイレクトされる' do
+        visit new_post_path
+        expect(page).to have_current_path(new_user_session_path)
+        expect(page).to have_content('You need to sign in or sign up before continuing.')
+      end
+  
+      it '投稿の編集ページにアクセスするとトップページにリダイレクトされる' do
+        visit edit_post_path(post)
+        expect(page).to have_current_path(root_path)
+        expect(page).to have_content('編集権限がありません。')
+      end
     end
   end
 end

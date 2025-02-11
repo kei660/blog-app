@@ -63,6 +63,8 @@ RSpec.configure do |config|
 require 'capybara/rails'
 require 'capybara/rspec'
 
+Capybara.javascript_driver = :selenium_chrome_headless
+
 RSpec.configure do |config|
   config.before(:each, type: :system) do
     driven_by :selenium_chrome_headless  # ヘッドレスChromeを使用

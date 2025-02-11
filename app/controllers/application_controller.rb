@@ -5,4 +5,6 @@ class ApplicationController < ActionController::Base
   # テスト環境ではCSRFチェックをスキップ
   skip_forgery_protection if Rails.env.test?
   
+ 
+
 end
