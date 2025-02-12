@@ -1,9 +1,9 @@
 <% if user_signed_in? %>
   <p>ようこそ、<%= current_user.email %> さん！</p>
-   <%= link_to "投稿する", new_post_path, class: "btn" %>
-  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn" %>
+   <%= link_to "投稿する", new_post_path, class: "btn post" %>
+  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "btn logout" %>
 <% else %>
 <p>ようこそ！</p>
-  <%= link_to "ログイン", new_user_session_path, class: "btn" %>
-  <%= link_to "サインアップ", new_user_registration_path, class: "btn" %>
+  <%= link_to "ログイン", new_user_session_path, class: "btn login" %>
+  <%= link_to "サインアップ", new_user_registration_path, class: "btn signup" %>
 <% end %>

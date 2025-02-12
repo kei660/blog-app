@@ -14,6 +14,25 @@
  *= require_self
  */
 
+/*トップページ*/
+
+.post-list{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 画面の高さいっぱいに */
+}
+
+.post-item{
+  text-align: center;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border: 3px solid deepskyblue; /* 水色の枠線 */
+  margin: 50px 
+}
+
  a {
   text-decoration: none; /* 下線を消す */
 }

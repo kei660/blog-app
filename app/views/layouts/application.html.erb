@@ -13,14 +13,14 @@
   <body>
      <header>
     <nav>
-      <ul>
+      
         <% if user_signed_in? %>  <!-- ログインしている場合 -->
-          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete, class:'btn logout' %>
         <% else %>  <!-- ログインしていない場合 -->
-          <li><%= link_to 'サインイン', new_user_session_path %></li>
-          <li><%= link_to 'サインアップ', new_user_registration_path %></li>
+          <p><%= link_to 'サインイン', new_user_session_path, class:'btn signin' %></p>
+          <p><%= link_to 'サインアップ', new_user_registration_path, class:'btn signup' %></p>
         <% end %>
-      </ul>
+      
     </nav>
   </header>
 
